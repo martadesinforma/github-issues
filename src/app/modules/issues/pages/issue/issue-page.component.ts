@@ -30,7 +30,6 @@ export default  class IssuePageComponent {
     )
   );
 
-
   issueQuery = this.issueService.issueQuery; //issueQuery es un  objeto que almacena propiedades y métodos relevantes
-/*   issueCommentsQuery = this.issueService.issueCommentsQuery; */
+  issueCommentsQuery = this.issueService.issueCommentsQuery;  //issueCommentsQuery es un  objeto que almacena propiedades y métodos relevantes
  }

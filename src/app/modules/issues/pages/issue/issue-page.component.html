@@ -3,22 +3,22 @@
 </h1>
 <a routerLink="/">Regresar</a>
 
+<h1>Issue:</h1>
 @if (issueQuery.data() === undefined ) {
 <p>Cargando issue</p>
 } @else {
-
 <issue-comment [issue]="issueQuery.data()!"></issue-comment>
-
 }
 
-<!-- Comments -->
-<!-- @if ( issueCommentsQuery.isLoading() ) {
+<h1>Comentarios:</h1>
+@if ( issueCommentsQuery.isLoading() ) {
 <p>Cargando comentarios</p>
-} @else { @for (comment of issueCommentsQuery.data(); track comment.id) {
-<issue-comment [issue]="comment" />
+}
+
+@for (comment of issueCommentsQuery.data(); track comment.id) {
+<issue-comment [issue]="comment"></issue-comment>
 } @empty {
 <p>No hay comentarios</p>
-} } -->
+}
 
-<!-- issueCommentsQuery -->
-<!-- @for -->
+
