@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { injectQuery } from '@tanstack/angular-query-experimental';
-import { getLabels } from '../actions/get-labels';
+import { getLabels } from '../actions/get-labels.action';
+import { getIssues } from '../actions/get-issues.action';
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +16,9 @@ export class IssuesService {
     queryFn: () => getLabels(), //queryFn: Es la función que se ejecuta para obtener los datos. Aquí, es una llamada directa a getLabels(), que realiza la solicitud HTTP.
   }));
 
-  /* issuesQuery = injectQuery(() => ({
+  issuesQuery = injectQuery(() => ({
     queryKey: ['issues'],
     queryFn: () => getIssues(),
-  })); */
+  }));
 
 }

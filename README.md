@@ -1,27 +1,53 @@
-# GithubIssues
+## Pasos a seguir para hacer uso de este proyecto
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.7.
+ 1. Clonar el proyecto
+ 2. Ejecutar ```npm install``` 
+ 3. Ejecutar la app ```ng serve -o```
+ 4. Para generar los archivos de producción lanzar `ng build`.
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+ # Este es un breve listado del contenido del proyecto:
 
-## Code scaffolding
+1. Uso de Standalone components
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+2. Tailwind: Para instalarlo, hemos escrito en la terminal ` npm install -D tailwindcss postcss autoprefixer` y `npx tailwindcss init`. En el archivo tailwind.config.js que se ha creado tenemos que copiar este codigo `"./src/**/*.{html,ts}"`. En el archivo styles.css tenemos que copiar este codigo `@tailwind base; @tailwind components; @tailwind utilities`. Ahora en la terminal cancelamos el ng serve-o que habíamos lanzado al principio cuando comienzas el proyecto y lo vuelves a lanzar.
 
-## Build
+3. Zoneless: En el archivo app.config.ts he borrado este codigo provideZoneChangeDetection({ eventCoalescing: true }), y he escrito este otro provideExperimentalZonelessChangeDetection(),.Cuando pasas a Zoneless Change Detection, como indica esta configuración experimental, estás eliminando la dependencia de Zone.js para gestionar la detección de cambios. Esto significa que Angular ya no intercepta eventos automáticamente y no disparará la detección de cambios a menos que tú lo manejes explícitamente. Este enfoque tiene varias ventajas, como un mejor rendimiento y mayor control, pero requiere que el desarrollador gestione manualmente cuándo y cómo Angular debe actualizar el DOM. En el archivo angular.json borramos "zone.js" de todos los lugares donde aparezca.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+4. Instalación TasStack Query: En la terminal escribimos los comandos `npm i @tanstack/angular-query-experimental`y `npm i @tanstack/angular-query-devtools-experimental`. Tambien tengo que modificar el archivo app.config.ts agregando el provider `provideAngularQuery(new QueryClient())`. En el archivo app.component.ts  tenemos que agregar la importación de `AngularQueryDevtools` y en el archivo app.component.html tenemos que escribir `<angular-query-devtools initialIsOpen></angular-query-devtools>`.
 
-## Running unit tests
+5. Uso de input(): En el componente labels-selector vamos a guardar en la variable labels (es una señal) información proveniente del componente issues-list-page mediante un input. En el issues-list-page.component.html hacemos la asociación: `<issues-labels-selector [labels]="labelsQuery.data() ?? []"></issues-labels-selector>`. Después vamos a hacer uso de este labels en el labels-selector.component.html. 
+Tambien  En el componente issue-item vamos a guardar en la variable issue (es una señal) información proveniente del componente issues-list-page mediante un input. En el issues-list-page.component.html hacemos la asociación: `<issue-item [issue]="issue"></issue-item>`. Después vamos a hacer uso de este issue en el issue-item.component.html.
+Tambien  En el componente issue-comment vamos a guardar en la variable issue (es una señal) información proveniente del componente issue-page mediante un input. En el issue-page.component.html hacemos la asociación: `<issue-comment [issue]="issueQuery.data()!"></issue-comment>`. Después vamos a hacer uso de este issue en el issue-comment.component.html.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+6. Instalación de Markdown: Markdown es un lenguaje de marcado ligero y sencillo que se utiliza principalmente para dar formato a texto en archivos de texto plano. En la terminal escribimos el comando `npm i ngx-markdown`.Tambien tengo que modificar el archivo app.config.ts agregando el provider `provideMarkdown()`. Como este Markdown lo voy a usar en el componente issue-comment, tengo que hacer la importación de `MarkdownModule` en el archivo issue-comment.component.ts y lo voy a usar en el issue-comment.component.html de esta manera:  <markdown></markdown>
 
-## Running end-to-end tests
+# Estructura de esta aplicación:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Dentro de la carpeta app
+1. Carpeta helpers
+  - sleep.ts function
 
-## Further help
+2. Carpeta modules 
+  2.1 carpeta issues
+    2.1.1 carpeta actions
+      - get-labels.action.ts function
+      - get-issues.action.ts function
+      - get-issue-by-number.action.ts function
+    2.1.2 carpeta components
+      - lables-selector component
+      - issue-item component
+      - issue-comment component
+    2.1.3 carpeta interfaces
+      - github-label.interface.ts
+    2.1.4 carpeta pages
+      - issues-list-page component
+      - issue-page component
+    2.1.5 carpeta services
+      - issues service
+      - issue service
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### Fuera de la carpeta app
+1. Carpeta environments
+  - environments.ts
+  - environments.development.ts

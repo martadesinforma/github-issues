@@ -3,6 +3,7 @@ import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideAngularQuery, QueryClient } from '@tanstack/angular-query-experimental';
+import { provideMarkdown} from 'ngx-markdown';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -10,5 +11,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideExperimentalZonelessChangeDetection(),
     provideAngularQuery(new QueryClient()),
+    provideMarkdown(),
   ]
 };

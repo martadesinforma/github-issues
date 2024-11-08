@@ -14,8 +14,21 @@
   <!-- Listado -->
   <div class="mt-4 flex flex-col col-span-2">
     <h3>Issues:</h3>
-    <a routerLink="/issue/123">Ir a issue 123</a>
+
     <!-- Todo: Listado de issues -->
+     @for (issue of issuesQuery.data(); track issue.id) {
+
+      <issue-item [issue]="issue"></issue-item>
+
+     }@empty {
+
+      @if(issuesQuery.isLoading()) {
+        <p>Cargando issues</p>
+      }@else {
+        <p>No hay issues que mostrar</p>
+      }
+
+     }
 
 
     <!-- Todo: Spinner -->
@@ -27,7 +40,7 @@
   <div>
     <h3>Labels:</h3>
     @if(labelsQuery.isLoading()) {
-      <p>Estamos cargando</p>
+      <p> Cargando labels</p>
     }@else {
       <issues-labels-selector [labels]="labelsQuery.data() ?? []"></issues-labels-selector>
     }
