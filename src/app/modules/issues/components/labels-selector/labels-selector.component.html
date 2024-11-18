@@ -1,6 +1,7 @@
 <div class="flex flex-wrap justify-center items-center gap-2">
   @for (label of labels(); track label.id) {
     <!-- el atributo [ngStyle] se usa para aplicar estilos CSS dinámicos a cada div que representa un label o etiqueta.  -->
+     <!-- se usa [class.selected-label]="isSelected(label.name)" para enlazar clases CSS al elemento si la expresión isSelected() se evalua como true -->
   <div
     class="border p2 rounded-md hover:bg-slate-950 p-1 cursor-pointer"
     [ngStyle]="{ 'border-color': '#' + label.color }"
