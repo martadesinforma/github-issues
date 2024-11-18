@@ -22,6 +22,12 @@ Tambien  En el componente issue-comment vamos a guardar en la variable issue (es
 
 6. Instalación de Markdown: Markdown es un lenguaje de marcado ligero y sencillo que se utiliza principalmente para dar formato a texto en archivos de texto plano. En la terminal escribimos el comando `npm i ngx-markdown`.Tambien tengo que modificar el archivo app.config.ts agregando el provider `provideMarkdown()`. Como este Markdown lo voy a usar en el componente issue-comment, tengo que hacer la importación de `MarkdownModule` en el archivo issue-comment.component.ts y lo voy a usar en el issue-comment.component.html de esta manera:  <markdown></markdown>
 
+7. Uso de prefetchQuery. El prefetch consiste en identificar qué información o recursos pueden ser necesarios en breve y comenzar a cargarlos en segundo plano, sin que el usuario se dé cuenta. Vamos a definir el método `prefetchIssue(issueId: string)` en el servicio issue.service.ts que permite cargar anticipadamente (o "prefetch") los datos de un issue específico cuando el usuario pasa el cursor sobre un elemento en la lista de issues. Este método lo vamos a llamar en el componente issue-item.component.ts
+
+8. Incluir la hoja de estilos de Font Awesome en el index.html. Una vez que el archivo CSS de Font Awesome está vinculado, puedes usar su amplio catálogo de iconos en el HTML mediante clases predefinidas. Vamos a usar iconos en la página issue-item.component.html.
+
+9. Testing: Hacemos testing en el componente get-issue-by-number.action.ts, y en el servicio issues.service.ts
+
 # Estructura de esta aplicación:
 
 ### Dentro de la carpeta app
