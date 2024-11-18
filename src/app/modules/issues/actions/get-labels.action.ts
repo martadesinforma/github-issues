@@ -16,6 +16,7 @@ export const getLabels = async (): Promise<GitHubLabel[]> => {
       `${BASE_URL}/labels`,
     );
 
+
     if (!resp.ok) throw "Can't load labels";
 
     const labels: GitHubLabel[] = await resp.json(); // El .json() obtiene el body de la response pero traducido de formato JSON a formato JavaScript.Me regresa en este caso un arreglo de GitHubLabel. labels luce de esta forma: Array(30) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}...]
