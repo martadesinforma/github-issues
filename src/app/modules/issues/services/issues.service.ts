@@ -9,10 +9,11 @@ import { State } from '../interfaces/github-issue.interface';
 })
 
 // Este servicio se va a utilizar en el componente issues-list-page
-//Este código en Angular define un servicio (IssuesService) que utiliza TanStack Query para realizar una solicitud de datos mediante la función getLabels y getIssues. Cuando labelsQuery se activa (por ejemplo, cuando el componente  issues-list-page lo utiliza), TanStack Query comprueba en su caché si hay datos almacenados bajo las claves ['labels'] y ['issues']. Si no hay datos en la caché o estos han caducado, TanStack Query ejecuta getLabels() y getIssues() para obtener datos de la API de GitHub. Una vez que los datos son recibidos, TanStack Query los almacena en la caché, bajo las claves ['labels'] y  ['issues'], y los proporciona al componente que utiliza labelsQuery.
+//Este código en Angular define un servicio (IssuesService) que utiliza TanStack Query para realizar una solicitud de datos mediante la función getLabels y getIssues. Cuando labelsQuery o issuesQuery se activan (por ejemplo, cuando el componente  issues-list-page lo utiliza), TanStack Query comprueba en su caché si hay datos almacenados bajo las claves ['labels'] y ['issues']. Si no hay datos en la caché o estos han caducado, TanStack Query ejecuta getLabels() y getIssues() para obtener datos de la API de GitHub. Una vez que los datos son recibidos, TanStack Query los almacena en la caché, bajo las claves ['labels'] y  ['issues'], y los proporciona al componente que utiliza labelsQuery y IssuesQuery.
 export class IssuesService {
 
   selectedState = signal<State>(State.All); // Va a recibir como valor un 'all', 'open' o 'closed'.
+
  /*  selectedLabels = signal(new Set<string>()); */ //significa que selectedLabels almacenará un conjunto de etiquetas (strings). En este caso, se le pasa un Set<string> vacío (es decir, new Set<string>()) como valor inicial. Esto significa que selectedLabels comienza vacío y, a medida que se añaden o eliminan etiquetas, el estado reactivo se actualizará automáticamente.
 
 
